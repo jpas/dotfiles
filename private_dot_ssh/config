@@ -1,0 +1,5 @@
+Host *.usask.ca
+  User jgp477
+
+Host *.jpas.xyz *.jpas.dev *.jarrodpas.com
+  User jpas
