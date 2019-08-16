@@ -26,6 +26,9 @@ HISTFILE=/dev/null
 PAGER=less
 LESSHISTFILE=/dev/null
 
+export GIT_SSH_COMMAND='ssh -F ~/.ssh/config'
+alias ssh="${GIT_SSH_COMMAND}"
+
 if have nvim; then
   alias nvim='nvim -p'
   alias vim='nvim'
