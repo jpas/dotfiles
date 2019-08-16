@@ -12,4 +12,4 @@ nix-env -iA \
   nixpkgs.neovim \
   nixpkgs.ripgrep \
   nixpkgs.tmux \
-  nixpkgs.chezmoi
+&& true
