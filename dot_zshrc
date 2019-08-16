@@ -1,0 +1,85 @@
+if [[ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]] && [[ -z "$NIX_PATH" ]]; then
+  emulate sh -c 'source "$HOME/.nix-profile/etc/profile.d/nix.sh"'
+fi
+
+autoload -Uz compinit
+compinit
+
+# vi mode
+bindkey -v
+
+# kill vi mode lag
+export KEYTIMEOUT=1
+
+have() {
+  which $1 &> /dev/null
+}
+
+if have nvim; then
+  alias nvim='nvim -p'
+  alias vim='nvim'
+  VISUAL=nvim
+else
+  alias vim='vim -p'
+  VISUAL=vim
+fi
+export VISUAL
+export EDITOR=$VISUAL
+alias v='$VISUAL'
+alias e='$EDITOR'
+
+alias l='ls'
+alias ll='ls -l'
+alias la='ls -la'
+if have exa; then
+  alias ls=exa
+fi
+
+# force our ssh config and ignore system's
+export GIT_SSH_COMMAND="ssh -F ~/.ssh/config"
+alias ssh="$GIT_SSH_COMMAND"
+
+if have fzf; then
+  if have fd; then
+    export FZF_DEFAULT_COMMAND="fd --type f --follow"
+    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+  fi
+  export FZF_DEFAULT_OPTS="--layout=reverse --inline-info --color=bg+:0"
+
+  if [[ -n "$TMUX" ]]; then
+    export FZF_TMUX=1
+    export FZF_TMUX_HEIGHT=20
+  fi
+
+  fzf_shell=$HOME/.fzf
+  if have nix; then
+    fzf_shell=$HOME/.nix-profile/share/fzf
+  elif have brew; then
+    fzf_shell=/usr/local/opt/fzf/shell
+  fi
+
+  fzf_completion=$fzf_shell/completion.zsh
+  [[ -f "$fzf_completion" ]] && source "$fzf_completion"
+
+  fzf_key_bindings=$fzf_shell/key-bindings.zsh
+  [[ -f "$fzf_key_bindings" ]] && source "$fzf_key_bindings"
+fi
+
+if have bat; then
+  alias cat=bat
+  export BAT_THEME="OneHalfDark"
+fi
+
+if have tmux; then
+  alias tmux='tmux -f "$HOME/.config/tmux/tmux.conf"'
+fi
+
+PROMPT=
+if [[ -n "$SSH_TTY" ]]; then
+  PROMPT+='%F{blue}%n%f at %F{cyan}%m%f in '
+fi
+PROMPT+='%F{green}%~%f'
+PROMPT+=$'\n'
+PROMPT+='%(?.%F{magenta}.%F{red})‡%f '
+
+export PROMPT
