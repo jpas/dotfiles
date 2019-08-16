@@ -15,4 +15,110 @@ fi
 # if we are not interactive we are done
 [[ "$-" == *i* ]] || return
 
-exec zsh
+have() {
+  which $1 &> /dev/null
+}
+
+set -o vi
+
+HISTFILE=/dev/null
+
+PAGER=less
+LESSHISTFILE=/dev/null
+
+if have nvim; then
+  alias nvim='nvim -p'
+  alias vim='nvim'
+  VISUAL=nvim
+else
+  alias vim='vim -p'
+  VISUAL=vim
+fi
+export VISUAL
+export EDITOR=$VISUAL
+alias v='$VISUAL'
+alias e='$EDITOR'
+
+alias l='ls'
+alias ll='ls -l'
+alias la='ls -la'
+if have exa; then
+  alias ls=exa
+fi
+
+if have fzf; then
+  export FZF_DEFAULT_OPTS="--layout=reverse --inline-info --color=bg+:0"
+
+  if have fd; then
+    export FZF_DEFAULT_COMMAND="fd --type f --follow"
+    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+  fi
+
+  if [[ -n "$TMUX" ]]; then
+    export FZF_TMUX=1
+    export FZF_TMUX_HEIGHT=20
+  fi
+
+  fzf_shell=$HOME/.fzf
+  if have nix; then
+    fzf_shell=$HOME/.nix-profile/share/fzf
+  elif have brew; then
+    fzf_shell=/usr/local/opt/fzf/shell
+  fi
+
+  fzf_completion=$fzf_shell/completion.bash
+  [[ -f "$fzf_completion" ]] && source "$fzf_completion"
+
+  fzf_key_bindings=$fzf_shell/key-bindings.bash
+  [[ -f "$fzf_key_bindings" ]] && source "$fzf_key_bindings"
+fi
+
+if have bat; then
+  alias cat=bat
+  export BAT_THEME="OneHalfDark"
+fi
+
+if have tmux; then
+  alias tmux='tmux -f "$HOME/.config/tmux/tmux.conf"'
+fi
+
+__prompt_generate() {
+  local status=$?
+
+  local BLACK="\[\e[0;30m\]"
+  local RED="\[\e[0;31m\]"
+  local GREEN="\[\e[0;32m\]"
+  local YELLOW="\[\e[0;33m\]"
+  local BLUE="\[\e[0;34m\]"
+  local MAGENTA="\[\e[0;35m\]"
+  local CYAN="\[\e[0;36m\]"
+  local WHITE="\[\e[0;37m\]"
+  local RESET="\[\e[0m\]"
+
+  local prompt=""
+
+  if [[ -n "$SSH_TTY" ]]; then
+    prompt+="${BLUE}\u${RESET} at ${CYAN}\h${RESET} in "
+  fi
+
+  prompt+="${GREEN}\w${RESET}"
+
+  local git_branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
+  if [[ -n "$git_branch" ]]; then
+    prompt+=" on ${YELLOW}${git_branch}${RESET}"
+  fi
+
+  if [[ "$status" != "0" ]]; then
+    prompt+="\n${RED}‡${RESET} "
+  else
+    prompt+="\n${MAGENTA}‡${RESET} "
+  fi
+
+  printf "%s" "${prompt}"
+}
+
+__prompt_update() {
+  PS1="$(__prompt_generate)"
+}
+
+ export PROMPT_COMMAND='__prompt_update'
