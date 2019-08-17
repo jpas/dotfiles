@@ -26,6 +26,3 @@ nix-install nixpkgs._1password
 echo "[INSTALL] nvim vim-plug"
 curl -sfLo $HOME/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-echo "[INSTALL] nvim plugins"
-nvim --headless +PlugInstall +PlugUpdate! +PlugClean! +qa

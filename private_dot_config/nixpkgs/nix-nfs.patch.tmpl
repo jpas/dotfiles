@@ -1,4 +1,4 @@
-{{- if hasSuffix .chezmoi.hostname "usask.ca" }}
+{{- if eq .chezmoi.username "jgp477" }}
 --- a/src/libstore/local-store.cc
 +++ b/src/libstore/local-store.cc
 @@ -461,7 +461,7 @@ static void canonicalisePathMetaData_(const Path & path, uid_t fromUid, InodesSe

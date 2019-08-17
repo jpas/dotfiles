@@ -1,4 +1,4 @@
-
+{{- if eq .chezmoi.username "jgp477" }}
 nix=$HOME/.nix
 chroot="$nix/nix-user-chroot-$(uname -m)"
 
@@ -13,3 +13,4 @@ fi
 
 unset chroot
 unset nix
+{{- end }}
