@@ -3,7 +3,7 @@ if [[ "$PATH" != *"$HOME/.local/bin:"* ]]; then
   export PATH=$HOME/.local/bin:$PATH
 fi
 
-{{- if eq .chezmoi.username "jgp477" }}
+{{ if eq .chezmoi.username "jgp477" -}}
 # chroot into nix if we can
 if [[ -e "$HOME/.nix/enter.sh" ]]; then
   source "$HOME/.nix/enter.sh"

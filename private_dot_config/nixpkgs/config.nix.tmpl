@@ -1,6 +1,6 @@
 {
   allowUnfree = true;
-  {{- if eq .chezmoi.username "jgp477" }}
+  {{ if eq .chezmoi.username "jgp477" -}}
   packageOverrides = pkgs: {
     nix = pkgs.nix.overrideAttrs (old: {
       patches = (old.patches or []) ++ [ ./nix-nfs.patch ];
