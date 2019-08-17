@@ -27,10 +27,10 @@ have() {
 
 set -o vi
 
-HISTFILE=/dev/null
+export HISTFILE=/dev/null
 
-PAGER=less
-LESSHISTFILE=/dev/null
+export PAGER=less
+export LESSHISTFILE=/dev/null
 
 export GIT_SSH_COMMAND='ssh -F ~/.ssh/config'
 alias ssh="${GIT_SSH_COMMAND}"
