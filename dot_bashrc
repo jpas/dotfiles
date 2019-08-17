@@ -12,6 +12,10 @@ if [[ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]] && [[ -z "$NIX_PATH" ]]; t
   source "$HOME/.nix-profile/etc/profile.d/nix.sh"
 fi
 
+if [[ "$BASH" != "$(which bash)" ]]; then
+  exec bash
+fi
+
 # if we are not interactive we are done
 [[ "$-" == *i* ]] || return
 
