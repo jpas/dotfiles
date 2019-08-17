@@ -1,0 +1,10 @@
+{
+  allowUnfree = true;
+  {{- if hasSuffix .chezmoi.hostname "usask.ca" }}
+  packageOverrides = pkgs: {
+    nix = pkgs.nix.overrideAttrs (old: {
+      patches = (old.patches or []) ++ [ ./nix-nfs.patch ];
+    });
+  };
+  {{- end }}
+}
