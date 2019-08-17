@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 set +h
 
 nix-have() {
@@ -20,6 +21,7 @@ nix-install nixpkgs.htop
 nix-install nixpkgs.neovim
 nix-install nixpkgs.ripgrep
 nix-install nixpkgs.tmux
+nix-install nixpkgs._1password
 
 echo "[INSTALL] nvim vim-plug"
 curl -sfLo $HOME/.local/share/nvim/site/autoload/plug.vim --create-dirs \
