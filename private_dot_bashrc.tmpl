@@ -1,13 +1,10 @@
-
 safe_source() {
  [[ -r "$1" ]] && source "$1"
 }
-
 {{ if eq .chezmoi.username "jgp477" -}}
 # chroot into nix if we can
 safe_source "$HOME/.nix/enter.sh"
 {{- end }}
-
 [[ -z "$NIX_PATH" ]] && safe_source "$HOME/.nix-profile/etc/profile.d/nix.sh"
 
 # ensure these are at the start of our path
