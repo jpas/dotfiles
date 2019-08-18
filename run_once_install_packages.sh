@@ -13,22 +13,22 @@ nix-install() {
 }
 
 nix-install nixpkgs.bashInteractive_5
-nix-install nixpkgs.bat
 nix-install nixpkgs.exa
 nix-install nixpkgs.fd
 nix-install nixpkgs.fzf
 nix-install nixpkgs.htop
-nix-install nixpkgs.neovim
 nix-install nixpkgs.ripgrep
 nix-install nixpkgs.tmux
 nix-install nixpkgs._1password
 
+nix-install nixpkgs.neovim
 echo "[INSTALL] nvim vim-plug"
 curl -sfLo $HOME/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-echo "[INSTALL] nvim plugins"
+echo "[INSTALL] nvim plugins... expect \"Errors\""
 cat > "$HOME/.config/nvim/plugins.vim" <<EOF
+call plug#begin('~/.local/share/nvim/plugged')
 Plug 'morhetz/gruvbox'
 Plug 'itchyny/lightline.vim'
 
@@ -52,13 +52,12 @@ Plug 'sheerun/vim-polyglot'
 
 " to generate tmux command line vim
 Plug 'edkolev/tmuxline.vim'
+call plug#end()
 EOF
 
-for cmd in '+PlugUpgrade' '+PlugInstall' '+PlugUpdate!' '+PlugClean!'; do
-  nvim --headless "$cmd" +qa
-done
-
+nvim --headless +PlugInstall +PlugUpdate! +PlugClean! +qa
 echo
 
+nix-install nixpkgs.bat
 echo "[INSTALL] bat themes"
 bat cache --build
