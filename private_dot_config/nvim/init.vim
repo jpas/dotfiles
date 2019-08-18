@@ -25,6 +25,7 @@ Plug 'edkolev/tmuxline.vim'
 call plug#end()
 
 " colours
+set termguicolors
 syntax on
 colorscheme gruvbox
 let g:lightline = { 'colorscheme': 'gruvbox' }
