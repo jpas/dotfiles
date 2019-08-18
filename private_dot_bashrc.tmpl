@@ -36,16 +36,16 @@ export GIT_SSH_COMMAND='ssh -F ~/.ssh/config'
 alias ssh="${GIT_SSH_COMMAND}"
 
 if have nvim; then
-  alias nvim='nvim -p'
-  alias vim='nvim'
   VISUAL=nvim
 else
-  alias vim='vim -p'
   VISUAL=vim
 fi
 export VISUAL
-export EDITOR=$VISUAL
 alias v='$VISUAL'
+alias nvim="$VISUAL -p"
+alias vim="$VISUAL -p"
+
+export EDITOR=$VISUAL
 alias e='$EDITOR'
 
 alias l='ls'
