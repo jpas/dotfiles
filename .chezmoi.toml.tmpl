@@ -1,0 +1,6 @@
+[data]
+  name = "Jarrod Pas"
+  {{- $email := promptString "email" -}}
+  email = "{{ $email }}"
+  {{- $hackyNix := promptString "hackyNix [yN]" -}}
+  hackyNix = "{{ if eq $hackyNix "y" }}"
