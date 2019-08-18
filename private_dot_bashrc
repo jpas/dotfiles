@@ -13,10 +13,8 @@ export PATH=$(python -c "from collections import OrderedDict;print(':'.join(Orde
 # if we are not interactive we are done
 [[ "$-" == *i* ]] || return
 
-{{ if eq .chezmoi.username "jgp477" -}}
 # chroot into nix if we can
 safe_source "$HOME/.nix/enter.sh"
-{{- end }}
 
 # get us the right bash version
 if [[ "$BASH" != "$(which bash)" ]]; then
