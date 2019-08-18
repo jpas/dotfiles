@@ -1,11 +1,7 @@
+
 safe_source() {
  [[ -r "$1" ]] && source "$1"
 }
-
-# adds local bin for manually installed programs
-if [[ "$PATH" != *"$HOME/.local/bin:"* ]]; then
-  export PATH=$HOME/.local/bin:$PATH
-fi
 
 {{ if eq .chezmoi.username "jgp477" -}}
 # chroot into nix if we can
@@ -14,6 +10,13 @@ safe_source "$HOME/.nix/enter.sh"
 
 [[ -z "$NIX_PATH" ]] && safe_source "$HOME/.nix-profile/etc/profile.d/nix.sh"
 
+# ensure these are at the start of our path
+export PATH=$HOME/.nix-profile/bin:$HOME/.local/bin:$PATH
+
+# all PATH changes should happen above
+export PATH=$(python -c "from collections import OrderedDict;print(':'.join(OrderedDict((p,0) for p in '$PATH'.split(':')).keys()))")
+
+# get us the right bash version
 if [[ "$BASH" != "$(which bash)" ]]; then
   exec bash
 fi
@@ -22,8 +25,6 @@ fi
 [[ "$-" == *i* ]] || return
 
 safe_source "$HOME/.local/share/nvim/plugged/gruvbox/gruvbox_256palette.sh"
-
-alias which=type
 
 have() {
   which "$1" &> /dev/null
