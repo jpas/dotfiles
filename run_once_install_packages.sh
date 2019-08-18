@@ -59,3 +59,6 @@ for cmd in '+PlugUpgrade' '+PlugInstall' '+PlugUpdate!' '+PlugClean!'; do
 done
 
 echo
+
+echo "[INSTALL] bat themes"
+bat cache --build
