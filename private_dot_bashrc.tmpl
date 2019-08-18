@@ -1,10 +1,7 @@
 safe_source() {
  [[ -r "$1" ]] && source "$1"
 }
-{{ if eq .chezmoi.username "jgp477" -}}
-# chroot into nix if we can
-safe_source "$HOME/.nix/enter.sh"
-{{- end }}
+
 [[ -z "$NIX_PATH" ]] && safe_source "$HOME/.nix-profile/etc/profile.d/nix.sh"
 
 # ensure these are at the start of our path
@@ -13,13 +10,16 @@ export PATH=$HOME/.nix-profile/bin:$HOME/.local/bin:$PATH
 # all PATH changes should happen above
 export PATH=$(python -c "from collections import OrderedDict;print(':'.join(OrderedDict((p,0) for p in '$PATH'.split(':')).keys()))")
 
+# if we are not interactive we are done
+[[ "$-" == *i* ]] || return
+{{ if eq .chezmoi.username "jgp477" -}}
+# chroot into nix if we can
+safe_source "$HOME/.nix/enter.sh"
+{{- end }}
 # get us the right bash version
 if [[ "$BASH" != "$(which bash)" ]]; then
   exec bash
 fi
-
-# if we are not interactive we are done
-[[ "$-" == *i* ]] || return
 
 safe_source "$HOME/.local/share/nvim/plugged/gruvbox/gruvbox_256palette.sh"
 
