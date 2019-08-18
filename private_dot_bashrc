@@ -14,7 +14,7 @@ export PATH=$(python -c "from collections import OrderedDict;print(':'.join(Orde
 [[ "$-" == *i* ]] || return
 
 # chroot into nix if we can
-safe_source "$HOME/.nix/enter.sh"
+safe_source "$HOME/.local/nix/enter.sh"
 
 # get us the right bash version
 if [[ "$BASH" != "$(which bash)" ]]; then

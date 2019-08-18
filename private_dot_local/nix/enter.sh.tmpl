@@ -1,5 +1,5 @@
 {{- if eq .chezmoi.username "jgp477" -}}
-nix=$HOME/.nix
+nix=$HOME/.local/nix
 chroot="$nix/nix-user-chroot-$(uname -m)"
 
 if [[ -x "$chroot" ]]; then
