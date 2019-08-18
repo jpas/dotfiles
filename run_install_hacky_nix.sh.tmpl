@@ -1,0 +1,26 @@
+#!/bin/bash
+{{ if .hacky_nix }}
+set -euo pipefail
+
+# nothing to do if either of these exist
+for d in /nix "$HOME/.local/nix"; do
+  [[ -d "$d" ]] && exit
+done
+
+echo "[INSTALL] nix... the hacky way..."
+
+nix=$(mktemp -d)
+cleanup() {
+  chmod -R u+w $nix
+  rm -rf $nix
+}
+trap cleanup EXIT
+
+chroot="$nix/nix-user-chroot-$(uname -m)"
+wget -O "$chroot" https://github.com/nix-community/nix-user-chroot/releases/download/1.0.2/nix-user-chroot-bin-1.0.2-x86_64-unknown-linux-musl
+chmod +x "$chroot"
+
+"$chroot" "$nix" bash -c 'curl https://nixos.org/nix/install | sh'
+"$chroot" "$nix" bash -c "source $HOME/.nix-profile/etc/profile.d/nix.sh; nix-env -iA nixpkgs.nix"
+cp -rv $nix $HOME/.local/nix
+{{ end }}
