@@ -22,5 +22,6 @@ chmod +x "$chroot"
 
 "$chroot" "$nix" bash -c 'curl https://nixos.org/nix/install | sh'
 "$chroot" "$nix" bash -c "source $HOME/.nix-profile/etc/profile.d/nix.sh; nix-env -iA nixpkgs.nix"
-cp -rv $nix $HOME/.local/nix
+mkdir -p $HOME/.local/nix
+cp -rv $nix/* $HOME/.local/nix/
 {{ end }}
