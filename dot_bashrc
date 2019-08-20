@@ -134,6 +134,7 @@ __prompt_generate() {
 }
 
 __prompt_update() {
+  printf '\e]0;%s\a' "$(whoami) at $(hostname -s)"
   PS1="$(__prompt_generate)"
 }
 
