@@ -134,7 +134,9 @@ __prompt_generate() {
 }
 
 __prompt_update() {
-  printf '\e]0;%s\a' "$(whoami) at $(hostname -s)"
+  if [[ -z "$TMUX" ]]; then
+    printf '\e]0;%s\a' "$(whoami) at $(hostname -s)"
+  fi
   PS1="$(__prompt_generate)"
 }
 
