@@ -61,3 +61,21 @@ echo
 nix-install nixpkgs.bat
 echo "[INSTALL] bat themes"
 bat cache --build
+
+echo "[INSTALL] tmux plugins... ish. prefix I then prefix U"
+tmux_plugins="$HOME/.local/share/tmux/plugins"
+if [[ -d "$tmux_plugins/tpm" ]]; then
+  echo "tmux plugin manager already installed!"
+else
+  mkdir -p "$tmux_plugins"
+  git clone https://github.com/tmux-plugins/tpm "$tmux_plugins/tpm"
+fi
+
+cat > "$HOME/.config/tmux/plugins.conf" <<EOF
+set -g @tpm_plugins '\
+         tmux-plugins/tpm \
+         tmux-plugins/tmux-sensible \
+         tmux-plugins/tmux-yank  \
+         tmux-plugins/tmux-pain-control \
+'
+EOF
