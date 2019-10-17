@@ -52,6 +52,8 @@ Plug 'sheerun/vim-polyglot'
 
 " to generate tmux command line vim
 Plug 'edkolev/tmuxline.vim'
+
+Plug 'vim-scripts/auctex.vim'
 call plug#end()
 EOF
 
