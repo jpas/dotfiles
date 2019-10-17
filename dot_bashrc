@@ -12,13 +12,18 @@ safe_source "$HOME/.nix-profile/etc/profile.d/nix.sh"
 export PATH=$HOME/.nix-profile/bin:$HOME/.local/bin:$PATH
 
 # all PATH changes should happen above
-export PATH=$(python -c "from collections import OrderedDict;print(':'.join(OrderedDict((p,0) for p in '$PATH'.split(':')).keys()))")
+clean_path() {
+  python -c "from collections import OrderedDict;print(':'.join(OrderedDict((p,0) for p in '$1'.split(':')).keys()))"
+}
+
+export PATH=$(clean_path "$PATH")
+export MANPATH=$(clean_path "$MANPATH")
 
 # if we are not interactive we are done
 [[ "$-" == *i* ]] || return
 
 # chroot into nix
-safe_source "$HOME/.local/nix/enter.sh"
+# safe_source "$HOME/.local/nix/enter.sh"
 
 # get us the right bash version
 if [[ "$BASH" != "$(which bash)" ]]; then
