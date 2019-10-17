@@ -65,7 +65,7 @@ alias l='ls'
 alias ll='ls -l'
 alias la='ls -la'
 if have exa; then
-  alias ls=exa
+  alias ls="exa --git"
 fi
 
 if have fzf; then
