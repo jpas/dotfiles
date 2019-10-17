@@ -8,6 +8,8 @@ safe_source() {
 # nix profile
 safe_source "$HOME/.nix-profile/etc/profile.d/nix.sh"
 
+export PATH="/Applications/Racket\ v7.4/bin:$PATH"
+
 # ensure these are at the start of our path
 export PATH=$HOME/.nix-profile/bin:$HOME/.local/bin:$PATH
 

@@ -36,3 +36,6 @@ command! MAke Make
 command! MAKe Make
 command! MAKE Make
 autocmd! VimEnter * Alias make Make
+
+" detect Racket files as Scheme
+au BufReadPost *.rkt,*.rktl set filetype=scheme
