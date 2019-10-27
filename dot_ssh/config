@@ -1,5 +1,8 @@
 Host *.usask.ca
   User jgp477
 
+Host !tux*.usask.ca *.usask.ca
+  ProxyJump tux7.usask.ca
+
 Host *.jpas.xyz *.jpas.dev *.jarrodpas.com
   User jpas
