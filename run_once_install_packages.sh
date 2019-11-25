@@ -22,6 +22,7 @@ nix-install nixpkgs.tmux
 nix-install nixpkgs._1password
 
 nix-install nixpkgs.neovim
+nix-install nixpkgs.neovim-remote
 
 nix-install nixpkgs.bat
 echo "[INSTALL] bat themes"

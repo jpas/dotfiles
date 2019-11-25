@@ -30,17 +30,20 @@ Plug 'rhysd/reply.vim'
 Plug 'vim-scripts/cmdalias.vim'
 Plug 'sheerun/vim-polyglot'
 
+" LaTeX
+Plug 'lervag/vimtex'
+
 " to generate tmux command line vim
 Plug 'edkolev/tmuxline.vim'
 
-Plug 'vim-scripts/auctex.vim'
 Plug 'wlangstroth/vim-racket'
 Plug 'Chiel92/vim-autoformat'
 
-" Coq
-Plug 'https://framagit.org/manu/coq-au-vim.git'
-Plug 'jvoorhis/coq.vim'
 call plug#end()
+
+" for lervag/vimtex
+let g:polyglot_disabled = ['latex']
+let g:vimtex_compiler_progname = 'nvr'
 EOF
 
 nvim --headless +PlugInstall +PlugUpdate! +PlugClean! +qa
