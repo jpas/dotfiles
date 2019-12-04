@@ -4,6 +4,7 @@ source $HOME/.config/nvim/plugins.vim
 " colours
 set termguicolors
 syntax on
+syntax sync fromstart
 colorscheme gruvbox
 let g:lightline = { 'colorscheme': 'gruvbox' }
 
