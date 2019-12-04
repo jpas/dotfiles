@@ -30,6 +30,8 @@ Plug 'rhysd/reply.vim'
 Plug 'vim-scripts/cmdalias.vim'
 Plug 'sheerun/vim-polyglot'
 
+Plug 'airblade/vim-gitgutter'
+
 " LaTeX
 Plug 'lervag/vimtex'
 
