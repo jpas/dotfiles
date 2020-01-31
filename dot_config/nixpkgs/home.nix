@@ -11,11 +11,15 @@
     exa
     fd
     fzf
+    gnumake
     htop
+    ispell
+    modd
     neovim
     ripgrep
-    tmux
     tectonic
+    tmux
+    zathura
   ];
 
   # TODO: enable programs from packages
