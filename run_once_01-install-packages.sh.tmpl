@@ -6,6 +6,10 @@
 set -e
 set +h
 
+if which home-manager &> /dev/null; then
+  exit
+fi
+
 nix-have() {
   attr="$(nix-env -f '<nixpkgs>' -qaPA "$1" | awk '{print $2}')" 
   nix-env -q | grep "$attr" &> /dev/null
