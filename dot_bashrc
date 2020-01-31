@@ -5,17 +5,23 @@ safe_source() {
  [[ -r "$1" ]] && source "$1"
 }
 
-# nix profile
-safe_source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+have() {
+  which "$1" &> /dev/null
+}
 
-export PATH="/Applications/Racket\ v7.4/bin:$PATH"
+# nix profile
+# safe_source "$HOME/.nix-profile/etc/profile.d/nix.sh"
 
 # ensure these are at the start of our path
-export PATH=$HOME/.nix-profile/bin:$HOME/.local/bin:$PATH
+# export PATH=$HOME/.nix-profile/bin:$HOME/.local/bin:$PATH
 
 # all PATH changes should happen above
 clean_path() {
-  python -c "from collections import OrderedDict;print(':'.join(OrderedDict((p,0) for p in '$1'.split(':')).keys()))"
+  if have python; then
+    python -c "from collections import OrderedDict;print(':'.join(OrderedDict((p,0) for p in '$1'.split(':')).keys()))"
+  else
+    echo "$1"
+  fi
 }
 
 export PATH=$(clean_path "$PATH")
@@ -29,15 +35,11 @@ export MANPATH=$(clean_path "$MANPATH")
 
 # get us the right bash version
 if [[ "$BASH" != "$(which bash)" ]]; then
-  exec bash
+  exec bash "$@"
 fi
 
 # set colours
 safe_source "$HOME/.local/share/nvim/plugged/gruvbox/gruvbox_256palette.sh"
-
-have() {
-  which "$1" &> /dev/null
-}
 
 set -o vi
 
