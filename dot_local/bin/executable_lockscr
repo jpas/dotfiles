@@ -1,0 +1,7 @@
+#!/bin/sh
+width=$(xwininfo -root | awk '/Width/{print $2}')
+height=$(xwininfo -root | awk '/Height/{print $2}')
+res=${width}x${height}
+xwd -silent -root \
+| convert xwd:- -resize 50% -blur 0x8 -resize "${res}" RGB:- \
+| i3lock --raw "${res}:rgb" --image /dev/stdin
