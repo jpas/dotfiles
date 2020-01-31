@@ -14,6 +14,7 @@ have() {
 
 # ensure these are at the start of our path
 # export PATH=$HOME/.nix-profile/bin:$HOME/.local/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
 
 # all PATH changes should happen above
 clean_path() {
