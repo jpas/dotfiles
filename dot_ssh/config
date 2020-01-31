@@ -6,3 +6,6 @@ Host !tux*.usask.ca *.usask.ca
 
 Host *.jpas.xyz *.jpas.dev *.jarrodpas.com
   User jpas
+
+Host !kado.jpas.xyz *.jpas.xyz
+  ProxyJump kado.jpas.xyz
