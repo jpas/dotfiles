@@ -151,6 +151,6 @@ __prompt_update() {
 
 export PROMPT_COMMAND='__prompt_update'
 
-if have direnv;
+if have direnv; then
   eval "$(direnv hook bash)"
 fi
