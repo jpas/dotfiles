@@ -1,30 +1,35 @@
+{{ if eq .chezmoi.os.osRelease.id "nixos" -}}
+#!/run/current-system/sw/bin/bash
+{{ else -}}
 #!/bin/bash
+{{ end -}}
 set -e
 set +h
 
 nix-have() {
-  nix-env -q | grep "$(nix-env -qaPA "$1" | awk '{print $2}')" &> /dev/null
+  attr="$(nix-env -f '<nixpkgs>' -qaPA "$1" | awk '{print $2}')" 
+  nix-env -q | grep "$attr" &> /dev/null
 }
 
 nix-install() {
   which nix-env &> /dev/null || return
   echo "[INSTALL] $1"
-  nix-have "$1" || nix-env -iA "$1"
+  nix-have "$1" || nix-env -f '<nixpkgs>' -iA "$1"
 }
 
-nix-install nixpkgs.bashInteractive_5
-nix-install nixpkgs.exa
-nix-install nixpkgs.fd
-nix-install nixpkgs.fzf
-nix-install nixpkgs.htop
-nix-install nixpkgs.ripgrep
-nix-install nixpkgs.tmux
-nix-install nixpkgs._1password
+nix-install bashInteractive_5
+nix-install exa
+nix-install fd
+nix-install fzf
+nix-install htop
+nix-install ripgrep
+nix-install tmux
+nix-install _1password
 
-nix-install nixpkgs.neovim
-nix-install nixpkgs.neovim-remote
+nix-install neovim
+nix-install neovim-remote
 
-nix-install nixpkgs.bat
+nix-install bat
 echo "[INSTALL] bat themes"
 bat cache --build
 

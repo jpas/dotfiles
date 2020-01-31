@@ -1,4 +1,8 @@
+{{ if eq .chezmoi.os.osRelease.id "nixos" -}}
+#!/run/current-system/sw/bin/bash
+{{ else -}}
 #!/bin/bash
+{{ end -}}
 set -e
 set +h
 
