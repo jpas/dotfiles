@@ -25,6 +25,7 @@ clean_path() {
   fi
 }
 
+export CDPATH=.:$HOME/school/classes
 export PATH=$(clean_path "$PATH")
 export MANPATH=$(clean_path "$MANPATH")
 
