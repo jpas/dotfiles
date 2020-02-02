@@ -7,10 +7,8 @@
   home.packages = with pkgs; [
     _1password
     bat
-    direnv
     exa
     fd
-    fzf
     gnumake
     htop
     ispell
@@ -19,15 +17,23 @@
     ripgrep
     tectonic
     tmux
-    zathura
   ];
 
   # TODO: enable programs from packages
 
+  # emacs? emacs!
   programs.emacs.enable = true;
   services.emacs.enable = true;
 
+  # fuzzy finder
+  programs.fzf.enable = true;
+
+  # automatic environment set up for cd
+  programs.direnv.enable = true;
   services.lorri.enable = true;
+
+  # zathura pdf viewer
+  programs.zathura.enable = true;
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
