@@ -26,7 +26,7 @@
       modifier = "Mod4"; # meta key
     in {
       modifier = modifier;
-      fonts = [ "Jetbrains Mono 10" ];
+      fonts = [ "Jetbrains Mono 8" ];
       keybindings = lib.mkOptionDefault {
         "${modifier}+Return" = "exec alacritty";
       };
@@ -40,7 +40,7 @@
     settings = {
       font = {
         normal.family = "JetBrains Mono";
-        size = 10;
+        size = 8;
       };
       colors = {
         # Gruvbox dark
