@@ -69,6 +69,12 @@ in
     neovim
     ripgrep
     tectonic
+    (texlive.combine { inherit (texlive)
+      scheme-medium
+      collection-fontsextra
+      collection-bibtexextra
+      ;
+    })
     tmux
   ];
 
