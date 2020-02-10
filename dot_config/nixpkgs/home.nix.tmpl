@@ -1,0 +1,8 @@
+{ ... }:
+{
+  imports =
+    [
+      # include machine specific config from chezmoi
+      {{ .chezmoi.sourceDir }}/home-manager/machine/{{ .chezmoi.hostname }}.nix
+    ];
+}
