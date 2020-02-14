@@ -1,2 +1,11 @@
-. "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
-. "$HOME/.bashrc"
+if [[ -d $HOME/.config/bash/profile.d ]]; then
+  for f in $HOME/.config/bash/profile.d/*.sh; do
+    if [[ -r $f ]]; then
+      source $f
+    fi
+  done
+fi
+
+if [[ -r $HOME/.bashrc ]]; then
+  source $HOME/.bashrc
+fi
