@@ -16,7 +16,7 @@ general {
   color_bad = "#cc241d"
 
   interval = 5
-  separator = "||"
+  separator = "|"
 }
 
 order += "ipv6"
