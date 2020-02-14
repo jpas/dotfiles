@@ -1,5 +1,7 @@
 {{- $email := promptString "email" -}}
+{{- $machine_role := promptString "machine type: headless, laptop, desktop" -}}
 [data]
   name = "Jarrod Pas"
   email = "{{ $email }}"
+  machine_role = "{{ $machine_role }}"
   hacky_nix = false
