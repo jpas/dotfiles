@@ -1,9 +1,10 @@
 live_config_reload: true
 
 font:
+  size: 9
+
   normal:
     family: "Hack"
-    size: 9
 
 window:
   padding:
