@@ -20,13 +20,13 @@ general {
 }
 
 # order += "ipv6"
-{{ if eq .machine_role "laptop" -}}
+{{ if .machine.laptop -}}
 order += "wireless _first_"
-{{- end -}}
+{{ end -}}
 order += "ethernet _first_"
-{{ if eq .machine_role "laptop" -}}
+{{ if .machine.laptop -}}
 order += "battery all"
-{{- end -}}
+{{ end -}}
 order += "disk /"
 order += "load"
 order += "memory"

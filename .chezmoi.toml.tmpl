@@ -1,7 +1,56 @@
-{{- $email := promptString "email" -}}
-{{- $machine_role := promptString "machine type: headless, laptop, desktop" -}}
 [data]
   name = "Jarrod Pas"
-  email = "{{ $email }}"
-  machine_role = "{{ $machine_role }}"
-  hacky_nix = false
+  email = "{{ promptString "email" }}"
+  [data.machine]
+  {{ $all_roles := list "laptop" "desktop" "server" "workstation" "headless"  -}}
+  {{ $my_roles  := splitList " " (promptString "roles") -}}
+  {{ range $_, $role := $all_roles -}}
+  {{ $role }} = {{ has $role $my_roles }}
+  {{ end }}
+
+  [data.colors]
+  dark0h  = "1d2021"
+  dark0   = "282828"
+  dark0s  = "32302f"
+  dark1   = "3c3836"
+  dark2   = "504945"
+  dark3   = "665c54"
+  dark4   = "7c6f64"
+
+  gray0   = "928374"
+
+  light0h = "f9f5d7"
+  light0  = "fbf1c7"
+  light0s = "f2e5bc"
+  light1  = "ebdbb2"
+  light2  = "d5c4a1"
+  light3  = "bdae93"
+  light4  = "a89984"
+
+  red0    = "9d0006"
+  red1    = "cc241d"
+  red2    = "fb4934"
+
+  green0  = "79740e"
+  green1  = "98971a"
+  green2  = "b8bb26"
+
+  yellow0 = "b57614"
+  yellow1 = "d79921"
+  yellow2 = "fabd2f"
+
+  blue0   = "076678"
+  blue1   = "458588"
+  blue2   = "83a598"
+
+  purple0 = "8f3f71"
+  purple1 = "b16286"
+  purple2 = "d3869b"
+
+  aqua0   = "427b58"
+  aqua1   = "689d6a"
+  aqua2   = "8ec07c"
+
+  orange0 = "af3a03"
+  orange1 = "d65d0e"
+  orange2 = "fe8019"
