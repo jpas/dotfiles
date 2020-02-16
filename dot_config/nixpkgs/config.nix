@@ -33,6 +33,7 @@
         firefox
         i3
         i3lock
+        rofi
         zathura
       ];
     };
