@@ -1,0 +1,52 @@
+* {
+  highlight: bold;
+  font: "{{ .font.monospace.family }} {{ .font.monospace.size }}";
+
+  bg0: #{{ .color.dark0  }};
+  bg1: #{{ .color.dark1  }};
+  bgf: #{{ .color.dark2  }};
+  bgu: #{{ .color.red1   }};
+  fg0: #{{ .color.light1 }};
+  ind: #{{ .color.light4 }};
+
+  text-color:       inherit;
+  background-color: inherit;
+  border-color:     inherit;
+
+  padding: 0;
+  margin:  0;
+  border:  0;
+}
+
+window {
+  text-color:       @fg0;
+  background-color: @bgf;
+  border-color:     @bgf;
+
+  location: north;
+  anchor:   north;
+  width:    100%;
+
+  children: [ horibox ];
+}
+
+horibox {
+  orientation: horizontal;
+  children: [ prompt, entry, listview ];
+}
+
+prompt, entry, listview {
+  padding: 2px;
+}
+
+entry {
+  expand: false;
+  width:  24ch;
+}
+
+listview {
+  layout: horizontal;
+  lines: 50;
+  spacing: 1ch;
+}
+
