@@ -1,14 +1,13 @@
 [data]
   name = "Jarrod Pas"
   email = "{{ promptString "email" }}"
-  [data.machine]
-  {{ $all_roles := list "laptop" "desktop" "server" "workstation" "headless"  -}}
-  {{ $my_roles  := splitList " " (promptString "roles") -}}
-  {{ range $_, $role := $all_roles -}}
-  {{ $role }} = {{ has $role $my_roles }}
-  {{ end }}
 
-  [data.colors]
+  [data.font]
+    [data.font.monospace]
+    family = "Hack"
+    size   = 8 # points
+
+  [data.color]
   dark0h  = "1d2021"
   dark0   = "282828"
   dark0s  = "32302f"
@@ -54,3 +53,10 @@
   orange0 = "af3a03"
   orange1 = "d65d0e"
   orange2 = "fe8019"
+
+  [data.machine]
+  {{ $all_roles := list "laptop" "desktop" "server" "workstation" "headless"  -}}
+  {{ $my_roles  := splitList " " (promptString "roles") -}}
+  {{ range $_, $role := $all_roles -}}
+  {{ $role }} = {{ has $role $my_roles }}
+  {{ end }}
