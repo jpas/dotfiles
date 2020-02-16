@@ -10,11 +10,15 @@
         bat
         chezmoi
         coreutils
+        direnv
+        emacs
         exa
         fd
         fzf
+        git
         htop
         jq
+        lorri
         neovim
         ripgrep
         tmux
@@ -29,7 +33,6 @@
 
         alacritty
         dmenu
-        emacs
         firefox
         i3
         i3lock
@@ -59,9 +62,7 @@
         core
 
         _1password
-        direnv
         gnumake
-        lorri
         modd
       ];
     };
