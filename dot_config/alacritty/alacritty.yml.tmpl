@@ -1,0 +1,37 @@
+live_config_reload: true
+
+font:
+  size: {{ .font.monospace.size }}
+
+  normal:
+    family: "{{ .font.monospace.family }}"
+
+window:
+  padding:
+    x: 2
+    y: 2
+
+colors:
+  primary:
+    background: '0x{{ .color.dark0  }}'
+    foreground: '0x{{ .color.light1 }}'
+
+  normal:
+    black:   '0x{{ .color.dark1   }}'
+    red:     '0x{{ .color.red1    }}'
+    green:   '0x{{ .color.green1  }}'
+    yellow:  '0x{{ .color.yellow1 }}'
+    blue:    '0x{{ .color.blue1   }}'
+    magenta: '0x{{ .color.purple1 }}'
+    cyan:    '0x{{ .color.aqua1   }}'
+    white:   '0x{{ .color.light4  }}'
+
+  bright:
+    black:   '0x{{ .color.gray0   }}'
+    red:     '0x{{ .color.red2    }}'
+    green:   '0x{{ .color.green2  }}'
+    yellow:  '0x{{ .color.yellow2 }}'
+    blue:    '0x{{ .color.blue2   }}'
+    magenta: '0x{{ .color.purple2 }}'
+    cyan:    '0x{{ .color.aqua2   }}'
+    white:   '0x{{ .color.light0  }}'
