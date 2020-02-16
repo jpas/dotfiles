@@ -1,5 +1,3 @@
-if ! have bat; then
-  return
-fi
+have bat || return
 
 alias cat='bat'

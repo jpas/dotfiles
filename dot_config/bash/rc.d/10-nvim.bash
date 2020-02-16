@@ -1,6 +1,4 @@
-if ! have nvim; then
-  return
-fi
+have nvim || return
 
 export VISUAL="nvim"
 export EDITOR="nvim"

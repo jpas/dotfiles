@@ -1,5 +1,3 @@
-if ! have direnv; then
-  return
-fi
+have direnv || return
 
 eval "$(direnv hook bash)"

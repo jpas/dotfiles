@@ -1,5 +1,3 @@
-if ! have exa; then
-  return
-fi
+have exa || return
 
 alias ls=exa

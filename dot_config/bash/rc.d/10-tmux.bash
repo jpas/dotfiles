@@ -1,5 +1,3 @@
-if ! have tmux; then
-  return
-fi
+have tmux || return
 
 alias tmux='tmux -f "$HOME/.config/tmux/tmux.conf'
