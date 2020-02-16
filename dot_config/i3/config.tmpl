@@ -9,11 +9,12 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
+# meta key
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Hack 9
+font pango:{{ .font.monospace.family }} {{ .font.monospace.size }}
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -187,17 +188,12 @@ bindsym $mod+r mode "resize"
 # Polybar launch script
 # exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-set $bg0 "#282828"
-# gruvbox dark1
-set $bg1 "#3c3836"
-# gruvbox dark2
-set $bgf "#504945"
-# gruvbox neutral_red
-set $bgu "#cc241d"
-# gruvbox light1
-set $fg0 "#ebdbb2"
-# gruvbox light4
-set $ind "#a89984"
+set $bg0 "#{{ .color.dark0  }}"
+set $bg1 "#{{ .color.dark1  }}"
+set $bgf "#{{ .color.dark2  }}"
+set $bgu "#{{ .color.red1   }}"
+set $fg0 "#{{ .color.light1 }}"
+set $ind "#{{ .color.light4 }}"
 
 # theme colors
 client.background       $bg1
@@ -211,7 +207,7 @@ client.placeholder      $bg1  $bg1  $fg0  $ind  $bg1
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-  font pango:Hack 9
+  font pango:{{ .font.monospace.family }} {{ .font.monospace.size }}
   tray_output primary
   tray_padding 2
 

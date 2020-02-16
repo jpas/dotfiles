@@ -8,12 +8,9 @@
 
 general {
   colors = true
-  # gruvbox neutral_green
-  color_good = "#98971a"
-  # gruvbox neutral_yellow
-  color_degraded = "#d79921"
-  # gruvbox neutral_red
-  color_bad = "#cc241d"
+  color_good     = "#{{ .color.green1  }}"
+  color_degraded = "#{{ .color.yellow1 }}"
+  color_bad      = "#{{ .color.red1    }}"
 
   interval = 5
   separator = " "
