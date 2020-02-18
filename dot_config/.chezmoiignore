@@ -2,8 +2,5 @@
 alacritty
 i3
 i3status
-{{ end }}
-
-{{ if .machine.workstation }}
-foobar
+rofi
 {{ end }}
