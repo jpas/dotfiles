@@ -1,6 +1,10 @@
 {{ if not .machine.workstation }}
 alacritty
+
+{{ if ne .chezmoi.os "linux" }}
 i3
 i3status
 rofi
+{{ end }}
+
 {{ end }}

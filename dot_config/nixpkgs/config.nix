@@ -1,8 +1,8 @@
 {
   allowUnfree = true;
 
-  packageOverrides = defPkgs: with defPkgs; {
-    core = with pkgs; buildEnv {
+  packageOverrides = super: let self = super.pkgs; in {
+    core = with self; buildEnv {
       # set of packages that are absolutely needed
       name = "core";
       paths = [
@@ -19,13 +19,13 @@
         htop
         jq
         lorri
-        neovim
+        # neovim
         ripgrep
         tmux
       ];
     };
 
-    core-x = with pkgs; buildEnv {
+    core-x = with self; buildEnv {
       # set of packages that are absolutely needed an X session
       name = "core-x";
       paths = [
@@ -41,7 +41,7 @@
       ];
     };
 
-    core-tex = with pkgs; buildEnv {
+    core-tex = with self; buildEnv {
       name = "core-tex";
       paths = [
         (texlive.combine {
@@ -55,7 +55,7 @@
       ];
     };
 
-    base = with pkgs; buildEnv {
+    base = with self; buildEnv {
       # a more featureful environment
       name = "base";
       paths = [
@@ -67,7 +67,7 @@
       ];
     };
 
-    base-x = with pkgs; buildEnv {
+    base-x = with self; buildEnv {
       # are more featureful X session
       name = "base-x";
       paths = [
