@@ -1,3 +1,9 @@
+if [[ -d $HOME/.config/bash/profile.d ]]; then
+  for f in $HOME/.config/bash/profile.d/*.sh; do
+    [[ -r $f ]] && source $f
+  done
+fi
+
 # stop if we are not interactive
 [[ $- == *i* ]] || return
 
