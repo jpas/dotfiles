@@ -19,7 +19,7 @@
         htop
         jq
         lorri
-        # neovim
+        neovim
         ripgrep
         tmux
       ];
