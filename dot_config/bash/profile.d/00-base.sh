@@ -1,14 +1,8 @@
 # set up our permissions right...
 umask 027
 
-# setting up PATH because no-one seems to do it the same way...
-PATH=''
-for d in /{usr/{local/,},}{,s}bin; do
-  if [ -d "$d" ]; then
-    PATH="${PATH}${PATH:+:}${d}"
-  fi
-done
-export PATH
+if [ -n "$__PROFILE_DONE" ]; then return; fi
+export __PROFILE_DONE=1
 
 if [ -d "$HOME/.nix-profile/etc/profile.d" ]; then
   for f in $HOME/.nix-profile/etc/profile.d/*.sh; do
