@@ -15,7 +15,7 @@ buildGoModule rec {
     ./0001-add-go-modules-support.patch
   ];
 
-  modSha256 = "0hdba81jmlbqiw8gyabikky2p3bnd04pis57rs1gk1svasp0dfa0";
+  vendorSha256 = "0gvi79pmiy4rnqa1a9xwl3qz7al57808bzaxv47isfw6fs4cbc2r";
 
   meta = {
     description = "Reference Manager in Go";
